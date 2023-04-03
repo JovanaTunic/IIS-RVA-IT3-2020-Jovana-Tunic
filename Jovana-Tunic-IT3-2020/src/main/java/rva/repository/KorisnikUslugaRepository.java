@@ -14,7 +14,7 @@ public interface KorisnikUslugaRepository extends JpaRepository<KorisnikUsluga,I
 	List<KorisnikUsluga> findByImeContainingIgnoreCase(String ime);   
 	 
 	// *****************getKorisnikUslugaByPocetakImena*********************************
-	@Query(value="select * from korisnikUsluga where lower(ime) like ?1%",nativeQuery=true)   
+	@Query(value="select * from korisnik_usluga where lower(ime) like ?1%",nativeQuery=true)   
 		public abstract List<KorisnikUsluga> getKorisnikUslugaByPocetakImena(@Param("pocetak")String pocetakImena);
 
 }

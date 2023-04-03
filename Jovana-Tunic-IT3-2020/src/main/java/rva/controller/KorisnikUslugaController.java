@@ -56,21 +56,19 @@ public class KorisnikUslugaController {
 		 }
     	 return new ResponseEntity<>(korisnikUsluga,HttpStatus.OK);
 	}
-	/*
+	
 	@GetMapping("/korisnikUsluga/pocetakImena/{pocetakImena}") 
-	public ResponseEntity<?> getAllArtikliByPocetakNaziva(@PathVariable("pocetakNaziva")String pocetakNaziva)  //mora path variable
+	public ResponseEntity<?> getKorisnikUslugaByPocetakImena(@PathVariable("pocetakImena")String pocetakImena)
 		{
-			 List<Banka> banka = bankaService.getBankaByPocetakNaziva(pocetakNaziva);
+			 List<KorisnikUsluga> korisnikUsluga = korisnikUslugaService.getKorisnikUslugaByPocetakImena(pocetakImena);
 			 
-			 if(banka.isEmpty()) {
-				 return new ResponseEntity<>("Lista banki je prazna",HttpStatus.NOT_FOUND);
+			 if(korisnikUsluga.isEmpty()) {
+				 return new ResponseEntity<>("Lista korisnika je prazna",HttpStatus.NOT_FOUND);
 			 }
-	    	 return new ResponseEntity<>(banka,HttpStatus.OK);
+	    	 return new ResponseEntity<>(korisnikUsluga,HttpStatus.OK);
 		}
 	
-	/*
-	 * 
-	 */
+
 	@PostMapping("/korisnikUsluga")
 		public ResponseEntity<?> postKorisnikUsluga(@RequestBody KorisnikUsluga korisnikUsluga){
 			//prvo kreiramo na servisu metodu -- banka service
@@ -96,7 +94,6 @@ public class KorisnikUslugaController {
 
 	} 
 	
-	//za post nam treba objekat (telo)
 	
 	@DeleteMapping ("/korisnikUsluga/{id}")
 	public ResponseEntity<?> deleteKorisnikUsluga(@PathVariable("id") int id){

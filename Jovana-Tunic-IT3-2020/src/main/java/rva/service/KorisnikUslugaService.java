@@ -35,11 +35,11 @@ public class KorisnikUslugaService {
 	{
 		return korisnikUslugaRepository.findByImeContainingIgnoreCase(ime);
 	}
-	/*
-	public List<KorisnikUslugaService> getKorisnikUslugaByPocetakImena (String pocetakImena){
-		return korisnikUslugaRepository.getBankaByPocetakNaziva(pocetakImena.toLowerCase());
+	
+	public List<KorisnikUsluga> getKorisnikUslugaByPocetakImena (String pocetakImena){
+		return korisnikUslugaRepository.getKorisnikUslugaByPocetakImena(pocetakImena.toLowerCase());
 	}
-	*/
+	
 	public KorisnikUsluga addKorisnikUsluga (KorisnikUsluga korisnikUsluga) 
 	{
 	    return korisnikUslugaRepository.save(korisnikUsluga);	
