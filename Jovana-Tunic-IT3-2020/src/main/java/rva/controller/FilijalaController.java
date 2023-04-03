@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import rva.model.Banka;
 import rva.model.Filijala;
-import rva.model.KorisnikUsluga;
 import rva.service.BankaService;
 import rva.service.FilijalaService;
 

@@ -21,6 +21,9 @@ VALUES(nextval('filijala_seq'), 'Zitni trg 1, Novi Sad', 2,'false',1);
 INSERT INTO "usluga" ("id", "naziv", "opis_usluge","datum_ugovora","provizija","filijala","korisnik_usluga")
 VALUES(nextval('usluga_seq'), 'Kredit', 'Izdavanje kredita uz kamatnu stopu od 5%', to_date('04.03.2017.', 'dd.mm.yyyy.'),0,1,1);
 
+INSERT INTO "usluga" ("id", "naziv", "opis_usluge","datum_ugovora","provizija","filijala","korisnik_usluga")
+VALUES(nextval('usluga_seq'), 'Platna transakcija', 'Prenos novcanih sredstava', to_date('01.08.2022.', 'dd.mm.yyyy.'),0.2,1,1);
+
 
 
 

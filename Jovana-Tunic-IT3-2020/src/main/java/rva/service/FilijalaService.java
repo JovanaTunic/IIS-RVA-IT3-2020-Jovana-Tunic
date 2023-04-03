@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import rva.model.Banka;
 import rva.model.Filijala;
-import rva.model.KorisnikUsluga;
 import rva.repository.FilijalaRepository;
 
 @Service

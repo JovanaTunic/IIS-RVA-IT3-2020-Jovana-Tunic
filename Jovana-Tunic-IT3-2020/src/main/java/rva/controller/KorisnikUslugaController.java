@@ -25,7 +25,7 @@ public class KorisnikUslugaController {
 	@Autowired
 	private KorisnikUslugaService korisnikUslugaService;
 
-	@GetMapping("/korisnikUsluga")  // da mapira get metodu
+	@GetMapping("/korisnikUsluga")  
     public ResponseEntity<?> getAllKorisnikUsluga()
 	{
 		 List<KorisnikUsluga> korisnikUsluga = korisnikUslugaService.getAllKorisnikUsluga();
@@ -46,8 +46,8 @@ public class KorisnikUslugaController {
 	}
 	
 	
-	@GetMapping("/korisnikUsluga/ime/{ime}")  // da mapira get metodu
-    public ResponseEntity<?> getAllKorisnikUslugaByIme(@PathVariable("ime")String ime)  //mora path variable
+	@GetMapping("/korisnikUsluga/ime/{ime}") 
+    public ResponseEntity<?> getAllKorisnikUslugaByIme(@PathVariable("ime")String ime) 
 	{
 		 List<KorisnikUsluga> korisnikUsluga = korisnikUslugaService.getAllKorisnikUslugaByIme(ime);
 		 
@@ -71,8 +71,7 @@ public class KorisnikUslugaController {
 
 	@PostMapping("/korisnikUsluga")
 		public ResponseEntity<?> postKorisnikUsluga(@RequestBody KorisnikUsluga korisnikUsluga){
-			//prvo kreiramo na servisu metodu -- banka service
-			if(korisnikUslugaService.existsById(korisnikUsluga.getId())) {
+		if(korisnikUslugaService.existsById(korisnikUsluga.getId())) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Korisnik sa id-jem " + korisnikUsluga.getId() + " vec postoji");
 			}
 			KorisnikUsluga savedKorisnikUsluga = korisnikUslugaService.addKorisnikUsluga(korisnikUsluga);
@@ -84,7 +83,6 @@ public class KorisnikUslugaController {
 	@PutMapping("/korisnikUsluga/{id}") 
 	public ResponseEntity<?> putKorisnikUsluga(@PathVariable("id") int id,
 			@RequestBody KorisnikUsluga korisnikUsluga){
-		//prvo kreiramo na servisu metodu -- artikl service
 		if(!korisnikUslugaService.existsById(korisnikUsluga.getId())) {
 			return new ResponseEntity<>("Korisnik sa id-jem " + korisnikUsluga.getId() + " nije pronadjena",HttpStatus.NOT_FOUND);
 		}

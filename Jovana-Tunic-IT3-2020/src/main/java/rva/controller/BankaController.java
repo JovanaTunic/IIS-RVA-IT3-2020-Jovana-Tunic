@@ -89,7 +89,6 @@ public class BankaController {
    	  return new ResponseEntity<>(updatedBanka,HttpStatus.OK);
 
 	} 
-	
 	//za post nam treba objekat (telo)
 	
 	@DeleteMapping ("/banka/{id}")
