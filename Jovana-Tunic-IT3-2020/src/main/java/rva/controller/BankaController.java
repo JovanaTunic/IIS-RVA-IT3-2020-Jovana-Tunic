@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,9 @@ public class BankaController {
 
 	@Autowired
 	private BankaService bankaService;
+	
+	@Autowired
+	private JdbcTemplate template;
 
 	@GetMapping("/banka")  // da mapira get metodu
     public ResponseEntity<?> getAllBanka()
@@ -96,9 +100,15 @@ public class BankaController {
 		if(!bankaService.existsById(bankaId)) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Banka sa id-jem  " + bankaId + " ne postoji");
 		}
-		
-		bankaService.deleteById(bankaId);
-		return new ResponseEntity<>("Banka sa id-jem " + bankaId + " je obrisana",HttpStatus.OK);
-
+		else {
+			if(bankaId==-100) {
+				bankaService.deleteById(bankaId);
+				template.execute("INSERT INTO \"banka\" (\"id\", \"naziv\", \"kontakt\",\"pib\") VALUES(-100, 'OTP', '+381 69 85 40 505','1589569841')"	);	
+				return new ResponseEntity<>("Banka sa id-jem " + bankaId + " je obrisana",HttpStatus.OK);
+			}
+			bankaService.deleteById(bankaId);
+			return new ResponseEntity<>("Banka sa id-jem " + bankaId + " je obrisana",HttpStatus.OK);
 		}
+		
+	}
 }

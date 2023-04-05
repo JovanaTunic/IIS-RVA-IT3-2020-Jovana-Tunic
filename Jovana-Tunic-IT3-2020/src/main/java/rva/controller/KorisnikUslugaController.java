@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,9 @@ public class KorisnikUslugaController {
 
 	@Autowired
 	private KorisnikUslugaService korisnikUslugaService;
+	
+	@Autowired
+	private JdbcTemplate template;
 
 	@GetMapping("/korisnikUsluga")  
     public ResponseEntity<?> getAllKorisnikUsluga()
@@ -98,10 +102,18 @@ public class KorisnikUslugaController {
 		if(!korisnikUslugaService.existsById(id)) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Korisnik sa id-jem  " + id + " ne postoji");
 		}
-		
-		korisnikUslugaService.deleteById(id);
-		return new ResponseEntity<>("Korisnik sa id-jem " + id + " je obrisan",HttpStatus.OK);
+		else {
+			if(id==-100) {
+				korisnikUslugaService.deleteById(id);
+				template.execute("INSERT INTO \"korisnik_usluga\" (\"id\", \"ime\", \"prezime\",\"maticni_broj\") VALUES(-100, 'Arija', 'Stefanovic','1254896523025')");
+				return new ResponseEntity<>("Korisnik sa id-jem " + id + " je obrisan",HttpStatus.OK);
 
+			}
+			else {
+				korisnikUslugaService.deleteById(id);
+				return new ResponseEntity<>("Korisnik sa id-jem " + id + " je obrisan",HttpStatus.OK);
+			}
 		}
-	
+		
+	}	
 }

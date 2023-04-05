@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,9 @@ public class FilijalaController  {
 	private FilijalaService filijalaService;
 	@Autowired
 	private BankaService bankaService;
+	
+	@Autowired
+	private JdbcTemplate template;
 	
 	@GetMapping("/filijala") 
     public ResponseEntity<?> getAllFilijala()
@@ -100,12 +104,18 @@ public class FilijalaController  {
 		if(!filijalaService.existsById(id)) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filijala sa id-jem  " + id + " ne postoji");
 		}
-		
-		filijalaService.deleteById(id);
-		return new ResponseEntity<>("Filijala sa id-jem " + id + " je obrisana",HttpStatus.OK);
+		else
+		{
+			if(id==-100) {
+			filijalaService.deleteById(id);
+			template.execute("INSERT INTO \"filijala\" (\"id\", \"adresa\", \"broj_pultova\",\"poseduje_sef\",\"banka\") VALUES(-100, 'Vase Stajica 22, Novi Sad', '8','true',3);");
+			return new ResponseEntity<>("Filijala sa id-jem " + id + " je obrisana",HttpStatus.OK);
+			}
+			else {
+				filijalaService.deleteById(id);
+				return new ResponseEntity<>("Filijala sa id-jem " + id + " je obrisana",HttpStatus.OK);
 
+			}
 		}
-	
-	
-	
+	}	
 }

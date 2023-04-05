@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,9 @@ public class UslugaController {
 	private UslugaService uslugaService;
 	@Autowired
 	private FilijalaService filijalaService;
+	
+	@Autowired
+	private JdbcTemplate template;
 	//@Autowired
 //	private KorisnikUslugaService korisnikService;
 	
@@ -107,16 +111,22 @@ public class UslugaController {
 
     } 
 
-
-
     @DeleteMapping ("/usluga/{id}")
     public ResponseEntity<?> deleteUsluga(@PathVariable("id") int id){
 	if(!uslugaService.existsById(id)) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usluga sa id-jem  " + id + " ne postoji");
 	}
-	
-	uslugaService.deleteById(id);
-	return new ResponseEntity<>("Usluga sa id-jem " + id + " je obrisana",HttpStatus.OK);
-
+	else {
+		if(id==-100) {
+			uslugaService.deleteById(id);
+			template.execute("INSERT INTO \"usluga\" (\"id\", \"naziv\", \"opis_usluge\",\"datum_ugovora\",\"provizija\",\"filijala\",\"korisnik_usluga\") VALUES(-100, 'Kredit', 'Izdavanje kredita uz kamatnu stopu od 5%', to_date('04.03.2017.', 'dd.mm.yyyy.'),0,'1','1');");
+			return new ResponseEntity<>("Usluga sa id-jem " + id + " je obrisana",HttpStatus.OK);
+		}
+		else {
+			uslugaService.deleteById(id);
+			return new ResponseEntity<>("Usluga sa id-jem " + id + " je obrisana",HttpStatus.OK);
+		}
+		
+	  }
 	}
 }
