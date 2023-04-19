@@ -107,7 +107,6 @@ public class KorisnikUslugaController {
 				korisnikUslugaService.deleteById(id);
 				template.execute("INSERT INTO \"korisnik_usluga\" (\"id\", \"ime\", \"prezime\",\"maticni_broj\") VALUES(-100, 'Arija', 'Stefanovic','1254896523025')");
 				return new ResponseEntity<>("Korisnik sa id-jem " + id + " je obrisan",HttpStatus.OK);
-
 			}
 			else {
 				korisnikUslugaService.deleteById(id);
