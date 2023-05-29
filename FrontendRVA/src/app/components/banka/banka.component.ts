@@ -35,10 +35,14 @@ export class BankaComponent {
 
   public openDialog(flag: number, banka?: Banka) : void {
     const dialogRef = this.dialog.open(BankaDialogComponent, {data: (banka?banka: new Banka())});
+    console.log(dialogRef)
     dialogRef.componentInstance.flagArtDialog = flag;
     dialogRef.afterClosed().subscribe(res => {if(res==1) this.loadData();})
   }
 
-  ngOnDestroy(): void { this.subscription.unsubscribe(); }
+  ngOnDestroy(): void {
+     this.subscription.unsubscribe();
+  }
+
   ngOnChanges(){this.loadData();}
 }

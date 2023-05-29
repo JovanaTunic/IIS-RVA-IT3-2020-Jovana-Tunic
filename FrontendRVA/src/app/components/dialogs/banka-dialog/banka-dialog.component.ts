@@ -10,16 +10,13 @@ import { Banka } from 'src/app/models/banka';
   templateUrl: './banka-dialog.component.html',
   styleUrls: ['./banka-dialog.component.css']
 })
-export class BankaDialogComponent implements OnInit {
+export class BankaDialogComponent {
   public flagArtDialog!: number;
 
   constructor(public snackBar: MatSnackBar,
     public bankaService: BankaService,
     @Inject(MAT_DIALOG_DATA) public dataBanka: Banka,
     public dialogRef: MatDialogRef<BankaDialogComponent>) { }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
   public add(): void {
     console.log("ID je " + this.dataBanka.id + this.dataBanka.naziv);
