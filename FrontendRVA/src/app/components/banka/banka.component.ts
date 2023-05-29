@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Banka } from 'src/app/models/banka';
 import { BankaService } from 'src/app/services/banka.service';
+import { BankaDialogComponent } from '../dialogs/banka-dialog/banka-dialog.component';
 
 @Component({
   selector: 'app-banka',
@@ -15,7 +17,7 @@ export class BankaComponent {
   displayedColumns = ['id', 'kontakt','naziv','pib', 'actions'];
   dataSource!: MatTableDataSource<Banka>;
 
-  constructor(private bankaService: BankaService) { }
+  constructor(private bankaService: BankaService, private dialog: MatDialog) { }
 
   ngOnInit(): void { this.loadData(); }
 
@@ -31,5 +33,12 @@ export class BankaComponent {
     );
   }
 
+  public openDialog(flag: number, banka?: Banka) : void {
+    const dialogRef = this.dialog.open(BankaDialogComponent, {data: (banka?banka: new Banka())});
+    dialogRef.componentInstance.flagArtDialog = flag;
+    dialogRef.afterClosed().subscribe(res => {if(res==1) this.loadData();})
+  }
+
   ngOnDestroy(): void { this.subscription.unsubscribe(); }
+  ngOnChanges(){this.loadData();}
 }
