@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { KorisnikUsluga } from 'src/app/models/korisnikUsluga';
 import { KorisnikUslugaService } from 'src/app/services/korisnikUsluga.service';
 import { KorisnikUslugaDialogComponent } from '../dialogs/korisnik-usluga-dialog/korisnik-usluga-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -17,6 +19,9 @@ export class KorisnikUslugaComponent {
   subscription!: Subscription;
   displayedColumns = ['id', 'ime','prezime','maticniBroj', 'actions'];
   dataSource!: MatTableDataSource<KorisnikUsluga>;
+
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
   constructor(private korisnikUslugaService: KorisnikUslugaService, private dialog: MatDialog) { }
 
@@ -46,6 +51,13 @@ export class KorisnikUslugaComponent {
   }
 
   ngOnChanges(){this.loadData();}
+
+applyFilter(filterValue: any) {
+  filterValue = filterValue.target.value
+  filterValue = filterValue.trim();
+  filterValue = filterValue.toLocaleLowerCase();
+  this.dataSource.filter = filterValue;
+}
 }
 
 //ng if kao da smo napravili if uslov

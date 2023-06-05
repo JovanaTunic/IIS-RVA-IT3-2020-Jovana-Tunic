@@ -64,4 +64,12 @@ export class UslugaComponent implements OnInit {
           }
         })
     }
+
+
+/*applyFilter(filterValue: any) {
+  filterValue = filterValue.target.value
+  filterValue = filterValue.trim();
+  filterValue = filterValue.toLocaleLowerCase();
+  this.dataSource.filter = filterValue;
+}*/
   }

@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Banka } from 'src/app/models/banka';
 import { BankaService } from 'src/app/services/banka.service';
 import { BankaDialogComponent } from '../dialogs/banka-dialog/banka-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-banka',
@@ -16,6 +18,9 @@ export class BankaComponent {
   subscription!: Subscription;
   displayedColumns = ['id', 'kontakt','naziv','pib', 'actions'];
   dataSource!: MatTableDataSource<Banka>;
+
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
   constructor(private bankaService: BankaService, private dialog: MatDialog) { }
 
@@ -37,7 +42,9 @@ export class BankaComponent {
     const dialogRef = this.dialog.open(BankaDialogComponent, {data: (banka?banka: new Banka())});
     console.log(dialogRef)
     dialogRef.componentInstance.flagArtDialog = flag;
-    dialogRef.afterClosed().subscribe(res => {if(res==1) this.loadData();})
+    dialogRef.afterClosed().subscribe(res =>{
+      if(res==1)
+      this.loadData();})
   }
 
   ngOnDestroy(): void {
@@ -45,4 +52,12 @@ export class BankaComponent {
   }
 
   ngOnChanges(){this.loadData();}
+
+
+applyFilter(filterValue: any) {
+  filterValue = filterValue.target.value
+  filterValue = filterValue.trim();
+  filterValue = filterValue.toLocaleLowerCase();
+  this.dataSource.filter = filterValue;
+}
 }

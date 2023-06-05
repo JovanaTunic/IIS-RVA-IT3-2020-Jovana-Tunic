@@ -50,4 +50,6 @@ public class KorisnikUslugaService {
 		korisnikUslugaRepository.deleteById(id);
 	}
 	
+	//contoler iz servisa, servis iz repozitorijuma
+	
 }

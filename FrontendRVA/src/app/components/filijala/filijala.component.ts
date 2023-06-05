@@ -64,8 +64,6 @@ export class FilijalaComponent {
  //iz htmla prosledjujemo ove podatke dijalogu
  openDialog(flag: number, filijala?: Filijala): void {
   const dialogRef = this.dialog.open(FilijalaDialogComponent, { data: (filijala ? filijala : new Filijala()) });
-  //otvara modalni dijalog odgovarajuće komponente
-  //vracamo instancu keirane komponente dialoga
   dialogRef.componentInstance.flag = flag;
   dialogRef.afterClosed().subscribe(res => {
     if (res === 1) //uspesno
@@ -80,11 +78,11 @@ selectRow(row: Filijala) {
   this.selektovanaFilijala1 = row;
 }
 
-/*applyFilter(filterValue: any) {
+applyFilter(filterValue: any) {
   filterValue = filterValue.target.value
   filterValue = filterValue.trim();
   filterValue = filterValue.toLocaleLowerCase();
-  this.dataSource.filter = filterValue; //    JaBuKa    --> JaBuKa --> jabuka
-}*/
+  this.dataSource.filter = filterValue;
+}
 
 }

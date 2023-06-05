@@ -76,7 +76,7 @@ public class KorisnikUslugaController {
 	
 
 	@PostMapping("/korisnikUsluga")
-		public ResponseEntity<?> postKorisnikUsluga(@RequestBody KorisnikUsluga korisnikUsluga){
+		public ResponseEntity<?> postKorisnikUsluga(@RequestBody KorisnikUsluga korisnikUsluga){ //objekat koji smo poslali sa fronta
 		if(korisnikUslugaService.existsById(korisnikUsluga.getId())) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Korisnik sa id-jem " + korisnikUsluga.getId() + " vec postoji");
 			}
