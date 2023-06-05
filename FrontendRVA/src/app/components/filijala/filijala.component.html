@@ -17,15 +17,15 @@
         <mat-cell *matCellDef="let row">{{ row.adresa }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="broj_pultova">
+      <ng-container matColumnDef="brojPultova">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Broj pultova</mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{ row.broj_pultova }}</mat-cell>
+          <mat-cell *matCellDef="let row"> {{ row.brojPultova }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="poseduje_sef">
+      <ng-container matColumnDef="posedujeSef">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Poseduje sef</mat-header-cell>
-          <mat-cell *matCellDef="let row" [style.color]="row.poseduje_sef == true ? 'green' : 'red'">
-              {{ row.poseduje_sef ? "Da" : "Ne" }}</mat-cell>
+          <mat-cell *matCellDef="let row" [style.color]="row.posedujeSef == true ? 'green' : 'red'">
+              {{ row.posedujeSef ? "Da" : "Ne" }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="banka">
@@ -60,6 +60,6 @@
 </div>
 
 <div class="container mat-elevation-z8">
-  <app-usluga> *ngIf="selektovanaFilijala1" [selektovanaFilijala]="selektovanaFilijala1">
+  <app-usluga *ngIf="selektovanaFilijala1" [selektovanaFilijala]="selektovanaFilijala1">
   </app-usluga>
 </div>

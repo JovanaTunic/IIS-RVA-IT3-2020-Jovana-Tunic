@@ -31,6 +31,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { UslugaDialogComponent } from './components/dialogs/usluga-dialog/usluga-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSelectModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

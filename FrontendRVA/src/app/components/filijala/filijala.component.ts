@@ -17,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class FilijalaComponent {
 
   subscription!: Subscription;
-  displayedColumns = ['id', 'adresa','broj_pultova','poseduje_sef','banka', 'actions'];
+  displayedColumns = ['id', 'adresa','brojPultova','posedujeSef','banka', 'actions'];
   dataSource!: MatTableDataSource<Filijala>;
   selektovanaFilijala1!: Filijala;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
@@ -76,7 +76,7 @@ export class FilijalaComponent {
   })
 }
 
-selectRow(row: any) {
+selectRow(row: Filijala) {
   this.selektovanaFilijala1 = row;
 }
 

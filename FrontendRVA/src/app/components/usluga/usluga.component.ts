@@ -15,10 +15,11 @@ import { UslugaDialogComponent } from '../dialogs/usluga-dialog/usluga-dialog.co
 })
 export class UslugaComponent implements OnInit {
 
-  displayedColumns = ['id', 'datum_ugovora', 'naziv', 'opis_usluge', 'provizija', 'korisnik_usluga', 'filijala', 'actions'];
+  displayedColumns = ['id', 'datumUgovora', 'naziv', 'opisUsluge', 'provizija', 'korisnikUsluga', 'filijala', 'actions'];
   dataSource!: MatTableDataSource<Usluga>;
   subscription!: Subscription;
   @Input() selektovanaFilijala!: Filijala;
+
 
   constructor(private uslugaService: UslugaService,
     private dialog: MatDialog,

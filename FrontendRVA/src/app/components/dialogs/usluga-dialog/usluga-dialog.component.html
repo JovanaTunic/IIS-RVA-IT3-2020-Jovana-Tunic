@@ -5,25 +5,15 @@
 
   <form class="mat-dialog-content"  #formControl="ngForm">
 
-    <div class="form">
-      <mat-form-field>
-        <mat-select [(ngModel)]="data.korisnik_usluga" placeholder="Artikl" name="korisnik_usluga" [compareWith]="compareTo" [disabled]="flag == 3">
-          <mat-option *ngFor="let korisnik_usluga of korisnici" [value]="korisnik_usluga">
-            {{ korisnik_usluga.ime }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-<!--
    <div class="form">
    <mat-form-field>
-          <input matInput [matDatepicker]="datumIsporuke" placeholder="Datum ugovora"
-              [(ngModel)]="data.datum_ugovora" name="datum_ugovora" [disabled]="flag == 3">
-          <mat-datepicker-toggle matSuffix [for]="datumIsporuke"></mat-datepicker-toggle>
+          <input matInput [matDatepicker]="datumUgovora" placeholder="Datum ugovora"
+              [(ngModel)]="data.datumUgovora" name="datumUgovora" [disabled]="flag == 3">
+          <mat-datepicker-toggle matSuffix [for]="datumUgovora"></mat-datepicker-toggle>
           <mat-datepicker #datumUgovora></mat-datepicker>
       </mat-form-field>
    </div>
--->
+
     <div class="form">
       <mat-form-field>
         <input matInput placeholder="Naziv" [(ngModel)]="data.naziv" name="naziv" [disabled]="flag == 3">
@@ -32,7 +22,24 @@
 
     <div class="form">
       <mat-form-field>
-        <input matInput placeholder="opis_usluge" [(ngModel)]="data.opis_usluge" name="opis_usluge" [disabled]="flag == 3">
+        <input matInput placeholder="Opis Usluge" [(ngModel)]="data.opisUsluge" name="opisUsluge" [disabled]="flag == 3">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Provizija" [(ngModel)]="data.provizija" name="provizija" [disabled]="flag == 3">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.korisnikUsluga" placeholder="Korisnik usluga" name="korisnikUsluga"
+        [compareWith]="compareTo" [disabled]="flag == 3">
+          <mat-option *ngFor="let korisnikUsluga of korisnici" [value]="korisnikUsluga">
+            {{ korisnikUsluga.ime }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 

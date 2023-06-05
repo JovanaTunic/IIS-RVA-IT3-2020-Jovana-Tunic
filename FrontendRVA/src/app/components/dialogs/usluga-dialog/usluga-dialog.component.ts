@@ -29,8 +29,8 @@ export class UslugaDialogComponent {
 
   ngOnInit(): void {
     this.korisnikUslugaSubscription = this.korisnikUslugaService.getAllKorisnikUsluga()
-      .subscribe(korisnici => {
-        this.korisnici = this.korisnici;
+      .subscribe(data => {
+        this.korisnici = data;
       }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message);

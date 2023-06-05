@@ -3,10 +3,10 @@ import { KorisnikUsluga } from "./korisnikUsluga";
 
 export class Usluga {
     id!: number;
-    datum_ugovora!: Date;
+    datumUgovora!: Date;
     naziv!: string;
-    opis_usluge!: string;
+    opisUsluge!: string;
     provizija!: number;
-    korisnik_usluga!: KorisnikUsluga;
+    korisnikUsluga!: KorisnikUsluga;
     filijala!: Filijala;
 }
