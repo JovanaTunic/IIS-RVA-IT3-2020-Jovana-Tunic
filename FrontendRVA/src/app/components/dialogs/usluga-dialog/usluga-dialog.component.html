@@ -1,0 +1,48 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje usluge filijale</h3>
+  <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija usluge filijale: {{data.id}}</h3>
+  <h3 mat-dialog-title *ngIf="flag == 3">Brisanje usluge filijale: {{data.id}}</h3>
+
+  <form class="mat-dialog-content"  #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.korisnik_usluga" placeholder="Artikl" name="korisnik_usluga" [compareWith]="compareTo" [disabled]="flag == 3">
+          <mat-option *ngFor="let korisnik_usluga of korisnici" [value]="korisnik_usluga">
+            {{ korisnik_usluga.ime }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+<!--
+   <div class="form">
+   <mat-form-field>
+          <input matInput [matDatepicker]="datumIsporuke" placeholder="Datum ugovora"
+              [(ngModel)]="data.datum_ugovora" name="datum_ugovora" [disabled]="flag == 3">
+          <mat-datepicker-toggle matSuffix [for]="datumIsporuke"></mat-datepicker-toggle>
+          <mat-datepicker #datumUgovora></mat-datepicker>
+      </mat-form-field>
+   </div>
+-->
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Naziv" [(ngModel)]="data.naziv" name="naziv" [disabled]="flag == 3">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="opis_usluge" [(ngModel)]="data.opis_usluge" name="opis_usluge" [disabled]="flag == 3">
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button *ngIf="flag == 1" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="add()">Sačuvaj</button>
+      <button mat-button *ngIf="flag == 2"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="update()">Sačuvaj</button>
+      <button mat-button *ngIf="flag == 3"  [mat-dialog-close]="1" (click)="delete()">Obriši</button>
+      <button mat-button (click)="cancel()" tabindex="-1">Poništi</button>
+    </div>
+
+
+  </form>
+</div>

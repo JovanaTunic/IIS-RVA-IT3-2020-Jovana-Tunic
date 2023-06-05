@@ -27,7 +27,7 @@ export class BankaDialogComponent {
     }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom dodavanja novog artikla. ', 'Zatvori', {
+        this.snackBar.open('Doslo je do greske prilikom dodavanja nove banke. ', 'Zatvori', {
           duration: 2500
         })
       };
@@ -42,7 +42,7 @@ export class BankaDialogComponent {
     }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom izmene artikla. ', 'Zatvori', {
+        this.snackBar.open('Doslo je do greske prilikom izmene banke. ', 'Zatvori', {
           duration: 2500
         })
       };
@@ -51,13 +51,13 @@ export class BankaDialogComponent {
 
   public delete(): void {
     this.bankaService.deleteBanka(this.dataBanka.id).subscribe(() => {
-      this.snackBar.open('Uspesno obrisan artikl: ' + this.dataBanka.naziv, 'OK', {
+      this.snackBar.open('Uspesno obrisana banka: ' + this.dataBanka.naziv, 'OK', {
         duration: 2500
       })
     }),
       (error: Error) => {
         console.log(error.name + ' ' + error.message)
-        this.snackBar.open('Doslo je do greske prilikom brisanja artikla. ', 'Zatvori', {
+        this.snackBar.open('Doslo je do greske prilikom brisanja banke. ', 'Zatvori', {
           duration: 2500
         })
       };

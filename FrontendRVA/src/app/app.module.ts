@@ -23,7 +23,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { KorisnikUslugaDialogComponent } from './components/dialogs/korisnik-usluga-dialog/korisnik-usluga-dialog.component';
+import { FilijalaDialogComponent } from './components/dialogs/filijala-dialog/filijala-dialog.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { UslugaDialogComponent } from './components/dialogs/usluga-dialog/usluga-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -32,7 +39,10 @@ import { FormsModule } from '@angular/forms';
     FilijalaComponent,
     UslugaComponent,
     KorisnikUslugaComponent,
-    BankaDialogComponent
+    BankaDialogComponent,
+    KorisnikUslugaDialogComponent,
+    FilijalaDialogComponent,
+    UslugaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +62,11 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
