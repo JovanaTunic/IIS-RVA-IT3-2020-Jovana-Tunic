@@ -16,7 +16,8 @@ export class KorisnikUslugaService {
   }
 
   public addKorisnikUsluga(korisnikUsluga:KorisnikUsluga):Observable<any> {
-    return this.httpClient.post(KORISNIKUSLUGA_URL,korisnikUsluga);
+    return this.httpClient.post(KORISNIKUSLUGA_URL,korisnikUsluga); //post metoda na url koji smo definisali, i prosledili smo objekat tipa korisnikUsluga (iz modela)
+  // observable - omotac koji obmota objekat koji smo poslaali da bi mogao da gleda to sto smo prosledili na back-u
   }
 
   public updateKorisnikUsluga(korisnikUsluga:KorisnikUsluga):Observable<any>{

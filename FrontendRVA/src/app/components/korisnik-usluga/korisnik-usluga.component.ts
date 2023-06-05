@@ -38,7 +38,7 @@ export class KorisnikUslugaComponent {
     const dialogRef = this.dialog.open(KorisnikUslugaDialogComponent, {data: (korisnikUsluga?korisnikUsluga: new KorisnikUsluga())});
     console.log(dialogRef)
     dialogRef.componentInstance.flagArtDialog = flag;
-    dialogRef.afterClosed().subscribe(res => {if(res==1) this.loadData();})
+    dialogRef.afterClosed().subscribe(res => {if(res==1) this.loadData();}) // u slucaju da je res 1 onda je uspesno dodato
   }
 
   ngOnDestroy(): void {
@@ -48,3 +48,9 @@ export class KorisnikUslugaComponent {
   ngOnChanges(){this.loadData();}
 }
 
+//ng if kao da smo napravili if uslov
+//ng* - direktive
+//one way tek kada kliknes ce da preuzme sa html koda
+//two way sta si deklarisao u ts fajlu automatski prihgvata informacije
+//apl prop konekcija s bazom kako treba da se ponasa, da automatski sql skript popuni bazu
+//

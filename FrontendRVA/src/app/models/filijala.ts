@@ -5,5 +5,5 @@ export class Filijala {
     adresa!: string;
     brojPultova!:number;
     posedujeSef!: boolean;
-    banka!: Banka;
+    banka!: Banka;  // ceo objekat - nije kljuc, jer baza radi sa stranim kljucevima, a ovde je to objekat
 }
