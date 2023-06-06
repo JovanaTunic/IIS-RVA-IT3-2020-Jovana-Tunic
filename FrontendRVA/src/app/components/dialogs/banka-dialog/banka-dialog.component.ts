@@ -19,7 +19,7 @@ export class BankaDialogComponent {
     public dialogRef: MatDialogRef<BankaDialogComponent>) { }
 
   public add(): void {
-    console.log("ID je " + this.dataBanka.id + this.dataBanka.naziv);
+   // console.log("ID je " + this.dataBanka.id + this.dataBanka.naziv);
     this.bankaService.addBanka(this.dataBanka).subscribe(() => {
       this.snackBar.open('Uspesno dodata banka: ' + this.dataBanka.naziv, 'OK', {
         duration: 2500

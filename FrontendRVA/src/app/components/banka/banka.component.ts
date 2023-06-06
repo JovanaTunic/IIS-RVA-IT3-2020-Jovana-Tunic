@@ -35,7 +35,11 @@ export class BankaComponent {
       error => {
         console.log(error.name + ' ' + error.message);
       }
+
     );
+
+    this.dataSource.sort = this.sort;
+    
   }
 
   public openDialog(flag: number, banka?: Banka) : void {

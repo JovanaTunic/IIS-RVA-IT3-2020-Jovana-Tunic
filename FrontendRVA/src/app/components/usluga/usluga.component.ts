@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,8 @@ import { Filijala } from 'src/app/models/filijala';
 import { Usluga } from 'src/app/models/usluga';
 import { UslugaService } from 'src/app/services/usluga.service';
 import { UslugaDialogComponent } from '../dialogs/usluga-dialog/usluga-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-usluga',
@@ -20,10 +22,12 @@ export class UslugaComponent implements OnInit {
   subscription!: Subscription;
   @Input() selektovanaFilijala!: Filijala;
 
-
   constructor(private uslugaService: UslugaService,
     private dialog: MatDialog,
     public snackBar: MatSnackBar) { }
+
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
     ngOnDestroy(): void {
       this.subscription.unsubscribe();
@@ -66,10 +70,10 @@ export class UslugaComponent implements OnInit {
     }
 
 
-/*applyFilter(filterValue: any) {
+applyFilter(filterValue: any) {
   filterValue = filterValue.target.value
   filterValue = filterValue.trim();
   filterValue = filterValue.toLocaleLowerCase();
   this.dataSource.filter = filterValue;
-}*/
+}
   }

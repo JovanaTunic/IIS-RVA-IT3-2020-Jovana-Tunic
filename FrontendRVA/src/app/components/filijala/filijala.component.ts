@@ -18,15 +18,15 @@ export class FilijalaComponent {
 
   subscription!: Subscription;
   displayedColumns = ['id', 'adresa','brojPultova','posedujeSef','banka', 'actions'];
-  dataSource!: MatTableDataSource<Filijala>;
+  dataSource!: MatTableDataSource<Filijala>; // varijabla u kojoj je smesten tip podatka filijala
   selektovanaFilijala1!: Filijala;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
   constructor(private filijalaService: FilijalaService, private dialog: MatDialog) { }
 
-  ngOnInit(): void { this.loadData(); }
-  ngOnChanges(): void { this.loadData(); }
+  ngOnInit(): void { this.loadData(); }  //pirijavljivanje na tok podataka
+  ngOnChanges(): void { this.loadData(); } //odjavljivanje sa toka podataka
 
   public loadData() {
     this.subscription = this.filijalaService.getAllFilijala().subscribe(

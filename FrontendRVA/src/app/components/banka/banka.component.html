@@ -6,25 +6,25 @@
   <mat-form-field>
     <input matInput placeholder="Pretraga banke..." (keyup)="applyFilter($event)">
   </mat-form-field>
-  <mat-table #table [dataSource]="dataSource" class="mat-cell">
+  <mat-table #table [dataSource]="dataSource" class="mat-cell" matSort>
     <!--ID-->
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header >ID</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
     </ng-container>
     <!-- Kontakt -->
     <ng-container matColumnDef="kontakt">
-      <mat-header-cell *matHeaderCellDef>Kontakt</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Kontakt</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.kontakt }}</mat-cell>
     </ng-container>
     <!--Naziv-->
     <ng-container matColumnDef="naziv">
-      <mat-header-cell *matHeaderCellDef>Naziv</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Naziv</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.naziv }}</mat-cell>
     </ng-container>
     <!-- PIB -->
     <ng-container matColumnDef="pib">
-      <mat-header-cell *matHeaderCellDef>PIB</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>PIB</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.pib }}</mat-cell>
     </ng-container>
     <!-- Action Buttons -->

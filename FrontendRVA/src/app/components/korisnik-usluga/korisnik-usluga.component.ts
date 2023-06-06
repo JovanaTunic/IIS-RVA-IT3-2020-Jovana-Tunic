@@ -37,6 +37,8 @@ export class KorisnikUslugaComponent {
         console.log(error.name + ' ' + error.message);
       }
     );
+
+  //  this.dataSource.sort = this.sort;
   }
 
   public openDialog(flag: number, korisnikUsluga?: KorisnikUsluga) : void {
